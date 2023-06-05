@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface EmploeeDAO {
 
-    void add(Employee employee);
+    Integer add(Employee employee);
 
     Employee getById(int id);
 
     List<Employee> getAllEmployee();
 
-    void updateEmployee(int id, Employee employee);
+    void updateEmployee(Employee employee, int id);
 
-    void deleteEmployee(int id);
+    void deleteEmployee(Employee employee);
 }

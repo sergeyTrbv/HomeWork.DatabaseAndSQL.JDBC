@@ -28,21 +28,8 @@ public class Application {
                 System.out.println(first_nameEmployee);
                 System.out.println(last_nameEmployee);
                 System.out.println(genderOfEmployee);
-                System.out.println("Age model.Employee: " + ageOfEmployee);
+                System.out.println("Age : " + ageOfEmployee);
             }
         }
-        EmploeeDAO emploeeDAO = new EmployeeDAOImpl();
-        System.out.println(emploeeDAO.getAllEmployee());
-
-        Employee employee = new Employee(6,"aaa","aaa","aaa",1,new City(1,"aaa"));
-        emploeeDAO.add(employee);
-
-        System.out.println(emploeeDAO.getById(2));
-
-        emploeeDAO.deleteEmployee(2);
-
-
-
-
     }
 }
