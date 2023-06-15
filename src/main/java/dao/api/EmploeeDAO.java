@@ -1,4 +1,4 @@
-package service;
+package dao.api;
 
 import model.Employee;
 
@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface EmploeeDAO {
 
-    Integer add(Employee employee);
+    Employee addEmployee(Employee employee);
 
-    Employee getById(int id);
+    Employee getEmployeeById(int id);
 
     List<Employee> getAllEmployee();
 
-    void updateEmployee(Employee employee, int id);
+    Employee updateEmployee(Employee employee);
 
     void deleteEmployee(Employee employee);
 }

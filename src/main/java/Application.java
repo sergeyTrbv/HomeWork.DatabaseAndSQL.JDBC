@@ -1,7 +1,7 @@
+import dao.api.EmploeeDAO;
+import dao.impl.EmployeeDAOImpl;
 import model.City;
 import model.Employee;
-import service.EmploeeDAO;
-import service.EmployeeDAOImpl;
 
 import java.sql.*;
 
@@ -29,7 +29,11 @@ public class Application {
                 System.out.println(last_nameEmployee);
                 System.out.println(genderOfEmployee);
                 System.out.println("Age : " + ageOfEmployee);
+
             }
+
         }
+        EmploeeDAO emploeeDAO = new EmployeeDAOImpl();
+        emploeeDAO.addEmployee(new Employee("Pavel","Volya","man",15,new City("Penza")));
     }
 }

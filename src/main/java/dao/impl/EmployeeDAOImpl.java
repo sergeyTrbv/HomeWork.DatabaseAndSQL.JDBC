@@ -1,34 +1,28 @@
-package service;
+package dao.impl;
 
-import config.ConnectionConfig;
+import dao.api.EmploeeDAO;
 import hibernate.HibernateSessionFactoryUtil;
-import model.City;
 import model.Employee;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeDAOImpl implements EmploeeDAO {
 
 
     @Override
-    public Integer add(Employee employee) {
-        Integer id;
+    public Employee addEmployee(Employee employee) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            id = (Integer) session.save(employee);
+            session.save(employee);
             transaction.commit();
         }
-        return id;
+        return employee;
     }
 
     @Override
-    public Employee getById(int id) {
+    public Employee getEmployeeById(int id) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             return session.get(Employee.class, id);
         }
@@ -37,18 +31,19 @@ public class EmployeeDAOImpl implements EmploeeDAO {
     @Override
     public List<Employee> getAllEmployee() {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM Employee").list();
+            return session.createQuery("FROM Employee").getResultList();
         }
     }
 
     @Override
-    public void updateEmployee(Employee employee, int id) {
+    public Employee updateEmployee(Employee employee) {
+        Employee update;
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            employee.setId(id);
-            session.update(employee);
+            update = (Employee)session.merge(employee);
             transaction.commit();
         }
+        return employee;
     }
 
     @Override
