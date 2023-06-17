@@ -20,7 +20,7 @@ public class Employee {
     @Column(name = "age",nullable = false)
     private int age;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private City city;
 
 
@@ -43,6 +43,10 @@ public class Employee {
 
     public Employee() {
 
+    }
+
+    public Employee(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -85,6 +89,13 @@ public class Employee {
         this.age = age;
     }
 
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 
     @Override
     public boolean equals(Object o) {
